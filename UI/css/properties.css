@@ -1,0 +1,14 @@
+#properties_frame {
+	margin-top: 10px;
+	-webkit-user-select: none;
+	position: absolute;
+}
+
+#properties_frame table, th, td {
+	border: solid 1px;
+	border-collapse: collapse;
+}
+
+#properties_frame table, th, td {
+	cursor: default;
+}

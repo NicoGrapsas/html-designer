@@ -1,0 +1,20 @@
+{
+	"toolbox": {
+		"input": {
+			"tag": "<input/>",
+			"css": {
+				"position": "absolute",
+				"width": "auto",
+				"height": "auto",
+			}
+		},
+		"button": {
+			"tag": "<button/>",
+			"css": {
+				"position": "absolute",
+				"width": "70px",
+				"height": "20px",
+			}
+		}
+	}
+}

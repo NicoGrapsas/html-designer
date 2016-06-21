@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>eStudio 0.0.3</title>
+	<link rel="stylesheet" type="text/css" href="UI/css/toolbox.css">
+	<link rel="stylesheet" type="text/css" href="UI/css/properties.css">
+</head>
+<body>
+
+<div id="toolbox_frame">
+	<ul id="toolbox">
+		<li><a id="pointer" href="#"><img src="UI/img/pointer.png">Pointer</a></li>
+		<li><a id="button" href="#"><img src="UI/img/button.png">Button</a></li>
+		<li><a id="textbox" href="#"><img src="UI/img/textbox2.gif">Textbox</a></li>
+	</ul>
+</div>
+<div id="properties_frame">
+	<table>
+		<tr>
+			<th>Property</th>
+			<th>Value</th>
+		</tr>
+		<tr>
+			<td>Tag</td>
+			<td><input type="text" name="tagName" readonly></td>
+		</tr>
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name="Name"></td>
+		</tr>
+		<tr>
+			<td>ID</td>
+			<td><input type="text" name="ID"></td>
+		</tr>
+		<tr>
+			<td>Text</td>
+			<td><input type="text" name="Text"></td>
+		</tr>
+	</table>
+</div>
+
+<!-- Insert this line above script imports  -->
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+
+<script src="core/js/mouse/dragndrop.js"></script>
+<script src="core/js/mouse/pointer.js"></script>
+<script src="core/js/toolbox.js"></script>
+<script src="core/js/builder.js"></script>
+<script src="core/js/properties.js"></script>
+
+</body>
+</html>
