@@ -1,86 +1,80 @@
-var DragDraw = new function(){
-	var self = this;
+class DragDraw {
 
-	self.pointer = null;
+	constructor(pointer) {
+		this.pointer = pointer;
 
-	self.drag = {start: {x: 0, y: 0}, stop: {x: 0, y: 0}, dist: {top: 0, left: 0}, ing: false, element: false};
-	self.draw = {start: {x: 0, y: 0}, stop: {x: 0, y: 0}, rect: {height: 0, width: 0}, ing: false, do: false, element: false};
-
-	self.init = function(pointer) {
-		self.pointer = pointer;
+		this.drag = {start: {x: 0, y: 0}, stop: {x: 0, y: 0}, dist: {top: 0, left: 0}, ing: false, element: false};
+		this.draw = {start: {x: 0, y: 0}, stop: {x: 0, y: 0}, rect: {height: 0, width: 0}, ing: false, do: false, element: false};
 	}
 
-	self.startDrag = function(e) {
-		if (!self.draw.ing) {
-			self.pointer.setPosition(e);
-			self.drag.start.x = self.pointer.pos.x;
-			self.drag.start.y = self.pointer.pos.y;
-			self.drag.element = self.pointer.getElement();
-			if ($(self.drag.element).hasClass('non-select')) {
-				self.drag.element = null;
+	startDrag(e) {
+		if (!this.draw.ing) {
+			this.pointer.setPosition(e);
+			this.drag.start.x = this.pointer.pos.x;
+			this.drag.start.y = this.pointer.pos.y;
+			this.drag.element = this.pointer.getElement();
+			if (this.drag.element.classList.contains('non-select')) {
+				console.log('NON SELECT');
+				this.drag.element = null;
 			}
 		}
 	}
 
-	self.updateDrag = function(e) {
-		if (self.drag.element) {
-			self.drag.ing = true;
-			self.pointer.setPosition(e);
-			self.drag.dist.top = self.pointer.pos.y - self.drag.start.y;
-			self.drag.dist.left = self.pointer.pos.x - self.drag.start.x;
-			yDif = parseInt($(self.drag.element).css('top'));  
-			xDif = parseInt($(self.drag.element).css('left'));
-			self.drag.element.style.top = yDif + self.drag.dist.top + 'px';
-			self.drag.element.style.left = xDif + self.drag.dist.left + 'px';
-			self.drag.start.x = self.pointer.pos.x;
-			self.drag.start.y = self.pointer.pos.y;
+	updateDrag(e) {
+		if (this.drag.element) {
+			this.drag.ing = true;
+			this.pointer.setPosition(e);
+			this.drag.dist.top = this.pointer.pos.y - this.drag.start.y;
+			this.drag.dist.left = this.pointer.pos.x - this.drag.start.x;
+			var yDif = parseInt(getComputedStyle(this.drag.element)['top']);  
+			var xDif = parseInt(getComputedStyle(this.drag.element)['left']);
+			this.drag.element.style.top = yDif + this.drag.dist.top + 'px';
+			this.drag.element.style.left = xDif + this.drag.dist.left + 'px';
+			this.drag.start.x = this.pointer.pos.x;
+			this.drag.start.y = this.pointer.pos.y;
 		}
 	}
 
-	self.stopDrag = function(e) {
-		self.drag.ing = false;
-		if (self.drag.element) {
-			self.updateDrag(e);
-			self.drag.stop.x = self.pointer.pos.x;
-			self.drag.stop.y = self.pointer.pos.y;
-			self.drag.element = false;
+	stopDrag(e) {
+		this.drag.ing = false;
+		if (this.drag.element) {
+			this.updateDrag(e);
+			this.drag.stop.x = this.pointer.pos.x;
+			this.drag.stop.y = this.pointer.pos.y;
+			this.drag.element = false;
 		}
 	}
 
-
-
-	self.startDraw = function(e) {
-		if (self.draw.do) {
-			self.pointer.setPosition(e);
-			self.draw.start.x = self.pointer.pos.x;
-			self.draw.start.y = self.pointer.pos.y;
-			self.draw.ing = true;
-			self.draw.do = false;
-			console.log('STARTx: ' + self.draw.start.x);
-			console.log('STARTy: ' + self.draw.start.y);
+	startDraw(e) {
+		if (this.draw.do) {
+			this.pointer.setPosition(e);
+			this.draw.start.x = this.pointer.pos.x;
+			this.draw.start.y = this.pointer.pos.y;
+			this.draw.ing = true;
+			this.draw.do = false;
+			console.log('STARTx: ' + this.draw.start.x);
+			console.log('STARTy: ' + this.draw.start.y);
 		}
 	}
 
-	self.updateDraw = function(e) {
-		if (self.draw.ing) {
-			self.pointer.setPosition(e);
-			self.draw.rect.width = self.pointer.pos.x - self.draw.start.x;
-			self.draw.rect.height = self.pointer.pos.y - self.draw.start.y;
+	updateDraw(e) {
+		if (this.draw.ing) {
+			this.pointer.setPosition(e);
+			this.draw.rect.width = this.pointer.pos.x - this.draw.start.x;
+			this.draw.rect.height = this.pointer.pos.y - this.draw.start.y;
 		}
 	}
 
-	self.stopDraw = function(e) {
-		if (self.draw.ing) {
-			self.updateDraw(e);
-			self.draw.stop.x = self.pointer.pos.x;
-			self.draw.stop.y = self.pointer.pos.y;
-			self.draw.ing = false;
-			$('html').trigger('stopDraw', [self.draw.rect]);
+	stopDraw(e) {
+		if (this.draw.ing) {
+			this.updateDraw(e);
+			this.draw.stop.x = this.pointer.pos.x;
+			this.draw.stop.y = this.pointer.pos.y;
+			this.draw.ing = false;
+			$('html').trigger('stopDraw', [this.draw.rect]);
 			$("#pointer").click();
-			console.log("STOPx: " + self.draw.stop.x);
-			console.log("STOPy: " + self.draw.stop.y);
+			console.log("STOPx: " + this.draw.stop.x);
+			console.log("STOPy: " + this.draw.stop.y);
 		}
 	}
-
-
 }
