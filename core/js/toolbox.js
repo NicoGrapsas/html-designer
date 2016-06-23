@@ -18,7 +18,7 @@ var Toolbox = new function() {
 			})
 		});
 		$("#toolbox ul, li, a, img, span").each(function(){
-			this.className = this.className + ' non-select';
+			this.className = this.className + ' no-drag';
 		});
 	});
 }

@@ -4,13 +4,13 @@ var Properties = new function(){
 	self.item = null;
 
 	$(function(){
-		$("#properties_frame table, tr, th, td, input").attr('class', 'non-select');
+		$("#properties_frame table, tr, th, td, input").attr('class', 'no-select');
 		$('html').on('ElementFocus', function(e, element){ self.getProperties(element); });
 		$('#properties_frame table tr td input').change(function(e){ self.setProperty(e); });
 	})
 
 	self.getProperties = function(e){
-		if ($(e).hasClass('non-select')) { return; }
+		if ($(e).hasClass('no-select')) { return; }
 		if ($(e).prop('tagName') == 'HTML') { return; }
 		self.item = e;
 		$("#properties_frame table tr td input[name='tagName']").val($(e).prop('tagName'));
