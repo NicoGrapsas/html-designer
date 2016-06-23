@@ -1,8 +1,8 @@
 var builder = new function() {
 	self = this;
 
-	self.pointer = Pointer;
 	self.toolbox = Toolbox;
+	self.pointer = self.toolbox.pointer;
 	
 	$(function(){
 		$('html').on('stopDraw', function(e, rect){ self.createElement(rect); });

@@ -1,7 +1,7 @@
 var Toolbox = new function() {
 	var self = this;
 
-	self.pointer = Pointer;
+	self.pointer = new Pointer();
 	self.currentSelected = 'pointer';
 
 	$(function(){
