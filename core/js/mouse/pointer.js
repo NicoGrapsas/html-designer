@@ -1,7 +1,7 @@
 class Pointer {
 
 	constructor(){
-		this.dd = new DragDraw(this);
+		this.dd = new DragDraw(this, document.getElementById('drawArea'));
 		this.pos = {x: 0, y: 0};
 		this.currentElement = null;
 		$(self => {
@@ -11,7 +11,7 @@ class Pointer {
 		});
 	}
 
-	getElement() { 
+	getElement() {
 		return document.elementFromPoint(this.pos.x - document.body.scrollLeft, this.pos.y - document.body.scrollTop);
 	}
 

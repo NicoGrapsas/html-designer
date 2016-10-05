@@ -5,7 +5,7 @@ var Toolbox = new function() {
 	self.currentSelected = 'pointer';
 
 	$(function(){
-		$("#toolbox li ul li a").each(function(){
+		$("#toolbox a").each(function(){
 			$(this).click(function(){
 				if (this.id == 'pointer') {
 					self.currentSelected = "pointer";

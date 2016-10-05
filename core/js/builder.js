@@ -3,7 +3,7 @@ var builder = new function() {
 
 	self.toolbox = Toolbox;
 	self.pointer = self.toolbox.pointer;
-	
+
 	$(function(){
 		$('html').on('stopDraw', function(e, rect){ self.createElement(rect); });
 	});
@@ -14,7 +14,7 @@ var builder = new function() {
 	}
 
 	self.createTextbox = function(rect) {
-		$('<input/>', { 
+		$('<input/>', {
 			"css": {
 				"position": "absolute",
 				"top": self.pointer.dd.draw.start.y,
@@ -26,7 +26,7 @@ var builder = new function() {
 	}
 
 	self.createButton = function(rect) {
-		$('<button/>', { 
+		$('<button/>', {
 			"css": {
 				"position": "absolute",
 				"top": self.pointer.dd.draw.start.y,
@@ -36,4 +36,5 @@ var builder = new function() {
 			},
 		}).appendTo('body');
 	}
+
 }

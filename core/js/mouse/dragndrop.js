@@ -1,10 +1,10 @@
 class DragDraw {
 
-	constructor(pointer) {
+	constructor(pointer, element) {
 		this.pointer = pointer;
 
 		this.drag = {start: {x: 0, y: 0}, stop: {x: 0, y: 0}, dist: {top: 0, left: 0}, ing: false, element: false};
-		this.draw = {start: {x: 0, y: 0}, stop: {x: 0, y: 0}, rect: {height: 0, width: 0}, ing: false, do: false, element: false};
+		this.draw = {start: {x: 0, y: 0}, stop: {x: 0, y: 0}, rect: {height: 0, width: 0}, ing: false, do: false, area: new DrawArea(element)};
 	}
 
 	startDrag(evt) {
@@ -26,7 +26,7 @@ class DragDraw {
 			this.pointer.setPosition(evt);
 			this.drag.dist.top = this.pointer.pos.y - this.drag.start.y;
 			this.drag.dist.left = this.pointer.pos.x - this.drag.start.x;
-			var yDif = parseInt(getComputedStyle(this.drag.element)['top']);  
+			var yDif = parseInt(getComputedStyle(this.drag.element)['top']);
 			var xDif = parseInt(getComputedStyle(this.drag.element)['left']);
 			this.drag.element.style.top = yDif + this.drag.dist.top + 'px';
 			this.drag.element.style.left = xDif + this.drag.dist.left + 'px';
@@ -52,6 +52,7 @@ class DragDraw {
 			this.draw.start.y = this.pointer.pos.y;
 			this.draw.ing = true;
 			this.draw.do = false;
+			this.draw.area.setOrigin({x: this.draw.start.x, y: this.draw.start.y});
 			console.log('STARTx: ' + this.draw.start.x);
 			console.log('STARTy: ' + this.draw.start.y);
 		}
@@ -62,6 +63,7 @@ class DragDraw {
 			this.pointer.setPosition(evt);
 			this.draw.rect.width = this.pointer.pos.x - this.draw.start.x;
 			this.draw.rect.height = this.pointer.pos.y - this.draw.start.y;
+			this.draw.area.updateRect({width: this.draw.rect.width, height: this.draw.rect.height});
 		}
 	}
 
@@ -71,6 +73,7 @@ class DragDraw {
 			this.draw.stop.x = this.pointer.pos.x;
 			this.draw.stop.y = this.pointer.pos.y;
 			this.draw.ing = false;
+			this.draw.area.clearRect();
 			$('html').trigger('stopDraw', [this.draw.rect]);
 			$("#pointer").click();
 			console.log("STOPx: " + this.draw.stop.x);
@@ -80,6 +83,6 @@ class DragDraw {
 
 	isDraggable(el) {
 		if (el.classList.contains('no-drag')) { return false; }
-		else { return true; }	
+		else { return true; }
 	}
 }

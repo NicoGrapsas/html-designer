@@ -4,28 +4,14 @@
 	<title>eStudio 0.0.3</title>
 	<link rel="stylesheet" type="text/css" href="UI/css/toolbox.css">
 	<link rel="stylesheet" type="text/css" href="UI/css/properties.css">
+	<link rel="stylesheet" type="text/css" href="UI/css/animations.css">
 </head>
 <body>
-<div id="toolbox_container">
-	<ul id="toolbox" class="accordion">
-		<li id="containers">
-			<a href="#containers">Containers<span>2</span></a>
-			<ul class="sub-menu">
- 				<li><a href="#containers">Column</a></li>
-				<li><a href="#containers">Row</a></li>
-				<li><a href="#containers">Form</a></li>
- 			</ul>
-		</li>
-		<li id="controls">
-			<a href="#controls">Controls<span>3</span></a>
-			<ul class="sub-menu">
- 				<li><a id="pointer" href="#controls">Pointer</a></li>
-				<li><a id="button" href="#controls">Button</a></li>
-				<li><a id="textbox" href="#controls">Textbox</a></li>
- 			</ul>
-		</li>
-    </ul>
-</div>
+	<ul id="toolbox">
+		<li><a id="pointer" href="#controls">Pointer</a></li>
+		<li><a id="button" href="#controls">Button</a></li>
+		<li><a id="textbox" href="#controls">Textbox</a></li>
+	</ul>
 <div id="properties_frame">
 	<table>
 		<tr>
@@ -51,12 +37,16 @@
 	</table>
 </div>
 
+
+<div id="drawArea"></div>
+
 <!-- Insert this line above script imports  -->
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
 <!-- Insert this line after script imports -->
 <script>if (window.module) module = window.module;</script>
 
+<script src="core/js/mouse/drawarea.js"></script>
 <script src="core/js/mouse/dragndrop.js"></script>
 <script src="core/js/mouse/pointer.js"></script>
 <script src="core/js/toolbox.js"></script>

@@ -1,0 +1,5 @@
+#drawArea {
+  display: none;
+  border: 1px dotted black;
+  position: absolute;
+}
